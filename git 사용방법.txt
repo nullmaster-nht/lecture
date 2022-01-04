@@ -1,0 +1,97 @@
+- git은 명령어를 기반으로 하는 프로그램이다. gi을 GUI방식으로 지원해주는 프로그램도 많이 있지만 터미널을 활용한 명령어 기반으로 하는걸 권장한다. 
+git 설치 
+	- https://git-scm.com/
+
+윈도우 cmd 실행 명령어로 확인 
+	- 버전 확인  
+		>git --version
+	- 깃 모든 설정 확인  
+		>git config --list
+	- 깃 사용자정보 설정
+		>git config --global user.name "이름" 
+		>git config --global user.email "이메일" 
+	- 깃 사용자 정보 확인 	
+		>git config --list 
+	- 깃 속성설정 core.autocrlf
+		- 윈도우와 맥의 경우 텍스트 저장 방법이 달라 여러 운영체제 이용시 문제가 발생할수있다. 
+		- 윈도우에서 텍스트 사용시 /r/n 붙는다. 이걸 자동으로 처리 해준다.  
+		윈도우>git config --global core.autocrlf true
+		맥>git config --global core.autocrlf input
+	
+깃 명령어 확인 
+	깃 공식사이트 > Documentation > Reference
+
+깃 명령어를 활용한 사용 방법 
+	1. 깃 에서 사용할 폴더를 만든다. 
+		d:/git/
+	2. cmd 에서 깃 초기화 명령어 실행 ( .git 숨김폴더로 생성된다.)
+		>git init
+	
+깃 파일 추가 하기 (add)
+	1. 깃 폴더에 파일 생성 
+		>echo hello world > a.txt
+		>echo hello world > b.txt
+		>echo hello world > c.txt
+		>ls 
+	2. 파일의 상태 확인
+		- untracked 상태를 확인할수있다. (빨간 글씨로 표시됨)
+		>git status
+	
+	3. 깃에 파일 올릴 준비 상태 만들기 
+		- 준비상태가 되어야 깃에 올릴수있다.
+		>git add a.txt
+		>git status 
+			* a.txt 준비되고 
+			* b.txt / c.txt 는 여전히 untract 상태인걸 확인한다. 
+		>git add *.txt 	*  모든 txt확장자 파일을 준비 시킨다.
+		>git status 	* 모든 파일이 준비된걸 확인한다. 
+		>echo hihihi >> a.txt	* a.txt 파일 내용 수정 
+		>git status	* 파일 상태 확인
+		>git add a.txt	* 수정파일도 추가 시킨다. 
+		>git status	* 파일 상태 확인
+		>git rm --cached *		* 모든 준비된상태의 파일을 모두 제거한다. 
+		>git status	* 파일 상태 확인
+		>git add *	* 폴더내 모든 파일을 준비시킨다.
+
+	4. 깃에 올리지 않을 파일들 따로 관리 
+		- .gitignore 폴더에 넣어두면 깃에 올리지 않는다.
+		>echo log > log.log	* log 파일생성
+		>echo stylesytle > style.css	* css 파일생성 
+		>git add *.css	* css 파일을 모두 준비 시킨다. 
+		>git status	* 파일 상태 확인
+		>echo *.log > .gitignore	* 모든 log 파일은 깃에 올리지 않는다.
+		
+깃 서버에 올리기 
+	1. 깃 커밋 (commit)
+		>git commit -m "메세지"
+	
+	2. 깃 서버와 연결 
+		>git remote add 이름  깃SSH
+		>git remote add nullmaster  git@github.com:nullmaster-nht/lecture.git
+		>git remote -v 	*연결확인
+
+	3. 깃 서버에 올리기 
+		>git push origin nullmaster  
+
+	4. git로그인후 code 확인 
+
+깃 파일 삭제 
+	>git rm 파일명	*로컬 폴더와 git 에서 모두 삭제 
+	>git commit -m "delete file"
+	>git rm --cached 파일명	*로컬 폴더에서는 삭제하지 않지만 git에서는 삭제 
+	>git commit -m "delete file"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
